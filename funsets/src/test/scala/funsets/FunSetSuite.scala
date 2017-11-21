@@ -77,6 +77,13 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+
+    val negatives: Set = _ < 0
+    val odds: Set = _ % 2 != 0
+
+    val lessThanThree: Int => Boolean = _ < 3
+    val greaterThanNegFive: Int => Boolean = _ > -5
+    val isEven: Int => Boolean = _ % 2 == 0
   }
 
   /**
@@ -107,8 +114,81 @@ class FunSetSuite extends FunSuite {
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+
+      val u = union(negatives, odds)
+      assert(contains(u, -3), "Union 4")
+      assert(contains(u, -4), "Union 5")
+      assert(contains(u, 3), "Union 6")
+      assert(!contains(u, 4), "Union 7")
     }
   }
 
+  test("intersect contains all shared elements of two sets") {
+    new TestSets {
+      val s = intersect(s1, s2)
+      assert(!contains(s, 1), "Intersect 1")
+      assert(!contains(s, 2), "Intersect 2")
 
+      val u = intersect(negatives, odds)
+      assert(contains(u, -3), "Intersect 3")
+      assert(!contains(u, -4), "Intersect 4")
+      assert(!contains(u, 3), "Intersect 5")
+      assert(!contains(u, 4), "Intersect 6")
+    }
+  }
+
+  test("diff contains the difference of two sets") {
+    new TestSets {
+      val s = diff(s1, s2)
+      assert(contains(s, 1), "Diff 1")
+      assert(!contains(s, 2), "Diff 2")
+
+      val u = diff(negatives, odds)
+      assert(contains(u, -2), "Diff 3")
+      assert(!contains(u, -3), "Diff 4")
+      assert(!contains(u, 3), "Diff 5")
+      assert(!contains(u, 4), "Diff 6")
+    }
+  }
+
+  test("filter returns the subset of a set when a predicate holds") {
+    new TestSets {
+      val s = filter(negatives, greaterThanNegFive)
+      assert(contains(s, -4), "Filter 1")
+      assert(contains(s, -3), "Filter 2")
+      assert(contains(s, -2), "Filter 3")
+      assert(contains(s, -1), "Filter 4")
+      assert(!contains(s, 0), "Filter 5")
+      assert(!contains(s, -5), "Filter 6")
+    }
+  }
+
+  test("forall returns whether predicate holds for all elements") {
+    new TestSets {
+      assert(forall(negatives, lessThanThree), "Forall 1")
+      assert(!forall(negatives, greaterThanNegFive), "Forall 2")
+      assert(!forall(odds, isEven), "Forall 3")
+    }
+  }
+
+  test("exists returns whether there exists an element that satisfies the predicate") {
+    new TestSets {
+      assert(exists(negatives, greaterThanNegFive), "Forall 1")
+      assert(exists(negatives, lessThanThree), "Forall 2")
+      assert(!exists(odds, isEven), "Forall 3")
+    }
+  }
+
+  test("map returns a set transformed by applying a function to each element") {
+    new TestSets {
+      val s = map(s1, _ + 1)
+      assert(contains(s, 2), "Map 1")
+      assert(!contains(s, 1), "Map 2")
+      assert(!contains(s, 3), "Map 3")
+
+      val m = map(odds, _ * 2)
+      assert(contains(m, 2), "Map 4")
+      assert(!contains(m, -3), "Map 5")
+    }
+  }
 }
