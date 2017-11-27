@@ -34,7 +34,7 @@ Create an `RDD` (by implementing `val wikiRdd`) which contains the `WikipediaArt
 
 We will use a simple metric for determining the popularity of a programming language: the number of Wikipedia articles that mention the language at least once.
 
-### Rank languages attempt #1: rankLangs
+### Rank languages attempt #1: `rankLangs`
 
 #### Computing `occurrencesOfLang`
 
@@ -54,7 +54,7 @@ The list should be sorted in descending order. That is, according to this rankin
 
 Pay attention to roughly how long it takes to run this part! (It should take tens of seconds.)
 
-### Rank languages attempt #2: rankLangsUsingIndex
+### Rank languages attempt #2: `rankLangsUsingIndex`
 
 #### Compute an inverted index
 
@@ -66,7 +66,7 @@ Implement method `makeIndex` which returns an RDD of the following type: `RDD[(S
 
 Hint: You might want to use methods `flatMap` and `groupByKey` on RDD for this part.
 
-#### Computing the ranking, rankLangsUsingIndex
+#### Computing the ranking, `rankLangsUsingIndex`
 
 Use the `makeIndex` method implemented in the previous part to implement a faster method for computing the language ranking.
 
@@ -78,7 +78,7 @@ Hint: method `mapValues` on `PairRDD` could be useful for this part.
 
 Can you notice a performance improvement over attempt #2? Why?
 
-### Rank languages attempt #3: rankLangsReduceByKey
+### Rank languages attempt #3: `rankLangsReduceByKey`
 
 In the case where the inverted index from above is only used for computing the ranking and for no other task (full-text search, say), it is more efficient to use the `reduceByKey` method to compute the ranking directly, without first computing an inverted index. Note that the `reduceByKey` method is only defined for RDDs containing pairs (each pair is interpreted as a key-value pair).
 
