@@ -1,8 +1,8 @@
 # Functional Programming in Scala
 
-This series consists of four courses.
+This specialization consists of four courses followed by their respective projects.
 
-## Scala functional programming principles
+## Scala Functional Programming Principles
 
 - [**Example**](https://github.com/mRcfps/functional-programming-in-scala/tree/master/example): The goal of this assignment is to familiarize yourself with the infrastructure and the tools required during this class. Even though the grade in this assignment will be excluded from your final grade for the course, it is important that you work through this assignment carefully.
 - [**Recursion**](https://github.com/mRcfps/functional-programming-in-scala/tree/master/recfun): Implement *Pascal's Triangle*, *Parenthesis Balancing* and *Counting Change* with recursion.
@@ -14,3 +14,4 @@ This series consists of four courses.
 ## Big Data Analysis with Scala and Spark
 
 - [**Wikipedia**](https://github.com/mRcfps/functional-programming-in-scala/tree/master/wikipedia): Use full-text data from Wikipedia to produce a rudimentary metric of how popular a programming language is with Spark RDD API.
+- [**StackOverflow**](https://github.com/mRcfps/functional-programming-in-scala/tree/master/stackoverflow): Implement a distributed k-means algorithm which clusters posts on the popular question-answer platform StackOverflow according to their score.
