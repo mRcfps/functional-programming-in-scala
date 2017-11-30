@@ -1,8 +1,6 @@
 # Time Usage
 
-For this assignment, you also need to download the [data](http://alaska.epfl.ch/~dockermoocs/bigdata/atussum.csv) (164 MB):
-
-and place it in the folder `src/main/resources/timeusage/` in your project directory.
+For this assignment, you also need to download the [data](http://alaska.epfl.ch/~dockermoocs/bigdata/atussum.csv) (164 MB), and place it in the folder `src/main/resources/timeusage/` in your project directory.
 
 ## The problem
 
